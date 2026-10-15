@@ -47,6 +47,10 @@ report_v4/*.synctex.gz
 
 # Potentially confidential or temporary project material
 correction_backup/
+report_v4/
 FWA_project_COMBINED_DUMP.txt
 prompt for backup.txt
 pollution_results.txt
+FWA steps1.1.txt
+FWA_steps1.1.txt
+Profiling T1–T5.py

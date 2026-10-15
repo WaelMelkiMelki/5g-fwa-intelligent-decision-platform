@@ -18,8 +18,9 @@ The original datasets are unavailable. Reconstructed experiments must not claim 
 
 - `app/`: read-only Streamlit decision-support dashboard;
 - root Python scripts: original batch analytics pipeline and validation utilities;
-- `report_v4/`: original LaTeX report source;
 - `step*_*.csv`: derived validation/output artifacts, not source datasets.
+
+The original report, combined dumps, internship material, and backup artifacts are intentionally excluded from the public repository until they have been reviewed for confidentiality.
 
 ## Planned public architecture
 
