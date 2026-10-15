@@ -16,8 +16,8 @@ from data_generation.synthetic_fwa import SyntheticFwaConfig, generate_dataset, 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=Path("data/processed"))
-    parser.add_argument("--subscribers", type=int, default=1000)
-    parser.add_argument("--cells", type=int, default=40)
+    parser.add_argument("--subscribers", type=int, default=12412)
+    parser.add_argument("--cells", type=int, default=731)
     parser.add_argument("--snapshot-month", default="2026-01-01")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--inject-anomalies", action="store_true")

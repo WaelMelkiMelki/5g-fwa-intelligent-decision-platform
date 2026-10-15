@@ -20,8 +20,8 @@ import pandas as pd
 class SyntheticFwaConfig:
     """Controls dataset size, snapshot, seed, and optional quality defects."""
 
-    subscribers: int = 1000
-    cells: int = 40
+    subscribers: int = 12412
+    cells: int = 731
     snapshot_month: str = "2026-01-01"
     seed: int = 42
     inject_anomalies: bool = False

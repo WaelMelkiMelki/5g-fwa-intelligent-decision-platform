@@ -10,8 +10,8 @@ Default generator configuration:
 
 | Parameter | Default |
 |---|---:|
-| subscribers | 1,000 |
-| cells | 40 |
+| subscribers | 12,412 |
+| cells | 731 |
 | snapshot month | `2026-01-01` |
 | random seed | 42 |
 | anomaly injection | disabled |
@@ -87,7 +87,8 @@ Columns:
 - Every usage and coverage serving-cell key exists in `cell_kpis`.
 - Subscriber and address identifiers are synthetic and contain no source customer identifiers.
 - All source tables use the same snapshot date for a generated dataset.
-- The generator does not attempt to reproduce historical Huawei row counts or metrics.
+- The default dimensions match the historical project volume: 12,412 subscribers and 731 cells.
+- Matching dimensions is a structural compatibility choice only; values, model metrics, and business outcomes are not historical reconstructions.
 
 ## 4. Validation rules
 

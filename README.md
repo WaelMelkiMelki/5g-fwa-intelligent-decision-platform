@@ -52,7 +52,7 @@ The generator uses a configurable random seed and can inject duplicate and missi
 To create a local Parquet dataset and manifest:
 
 ```bash
-python scripts/generate_synthetic_data.py --output-dir data/processed --subscribers 1000 --cells 40 --seed 42
+python scripts/generate_synthetic_data.py --output-dir data/processed --subscribers 12412 --cells 731 --seed 42
 ```
 
 Generated files are local artifacts and are excluded from Git.

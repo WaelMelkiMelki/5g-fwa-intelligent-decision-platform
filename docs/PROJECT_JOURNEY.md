@@ -103,6 +103,8 @@ The generator creates five tables:
 
 The generator uses `numpy.random.default_rng` with an explicit seed. It validates grain uniqueness, complete subscriber relationships, valid cell references, non-negative measures, PRB bounds, and non-null coordinates. It can inject a missing usage value and a duplicate usage row to exercise quality checks.
 
+The default dimensions now match the historical project volume: 12,412 synthetic subscribers and 731 synthetic cells. This matches structural scale only and must not be interpreted as reconstruction of the original data.
+
 ### Validation evidence
 
 - Python syntax compilation passed for the generator and tests.
