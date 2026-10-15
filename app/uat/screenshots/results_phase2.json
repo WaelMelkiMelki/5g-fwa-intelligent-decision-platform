@@ -1,0 +1,92 @@
+{
+  "p6_dataquality_1920x1080.png": {
+    "md5": "e3be8b70514854b328379281fda47bac",
+    "overflow_px": 0,
+    "page": "Data_Quality",
+    "has_traceback": false
+  },
+  "p6_dataquality_1440x900.png": {
+    "md5": "e178f4214445f9e94486169ec44e0f08",
+    "overflow_px": 0,
+    "page": "Data_Quality",
+    "has_traceback": false
+  },
+  "p6_dataquality_1366x768.png": {
+    "md5": "4a4d835a8cb7a9df38be3d1ac400753a",
+    "overflow_px": 0,
+    "page": "Data_Quality",
+    "has_traceback": false
+  },
+  "p7_coverage_1920x1080.png": {
+    "md5": "17668b5e871e04835495fe3bf6366564",
+    "overflow_px": 0,
+    "page": "Coverage_and_Eligibility",
+    "has_traceback": false
+  },
+  "p7_coverage_1440x900.png": {
+    "md5": "2f6bbe366c4d5d6940afd8875765bca3",
+    "overflow_px": 0,
+    "page": "Coverage_and_Eligibility",
+    "has_traceback": false
+  },
+  "p7_coverage_1366x768.png": {
+    "md5": "7cd356bfab10c7afad400ce5a16ae48c",
+    "overflow_px": 0,
+    "page": "Coverage_and_Eligibility",
+    "has_traceback": false
+  },
+  "p8_segmentation_1920x1080.png": {
+    "md5": "bbca5a2dffcedf1084c2b0354a7bde91",
+    "overflow_px": 0,
+    "page": "Customer_Segmentation",
+    "has_traceback": false
+  },
+  "p8_segmentation_1440x900.png": {
+    "md5": "779379cd5cce74223ff99729b8c1cb3b",
+    "overflow_px": 0,
+    "page": "Customer_Segmentation",
+    "has_traceback": false
+  },
+  "p8_segmentation_1366x768.png": {
+    "md5": "24c46c60ae61834bc2cb3a4d9d336ef6",
+    "overflow_px": 0,
+    "page": "Customer_Segmentation",
+    "has_traceback": false
+  },
+  "p9_recommendations_1920x1080.png": {
+    "md5": "52c7ba7881fd6ee08ce2a55fd7515b9b",
+    "overflow_px": 0,
+    "page": "Offer_Recommendations",
+    "has_traceback": false
+  },
+  "p9_recommendations_1440x900.png": {
+    "md5": "41792fbb9eba57f526a405acba69801a",
+    "overflow_px": 0,
+    "page": "Offer_Recommendations",
+    "has_traceback": false
+  },
+  "p9_recommendations_1366x768.png": {
+    "md5": "d68d1dac11196a9f4df4eece25407840",
+    "overflow_px": 0,
+    "page": "Offer_Recommendations",
+    "has_traceback": false
+  },
+  "p10_simulation_1920x1080.png": {
+    "md5": "0b04026ea3ee68d4b466706b2b5fbf2d",
+    "overflow_px": 0,
+    "page": "What_If_Simulation",
+    "has_traceback": false
+  },
+  "p10_simulation_1440x900.png": {
+    "md5": "48da8ada75154b4144b95b1cf070b891",
+    "overflow_px": 0,
+    "page": "What_If_Simulation",
+    "has_traceback": false
+  },
+  "p10_simulation_1366x768.png": {
+    "md5": "06619dcaedf0490169860816f86323c9",
+    "overflow_px": 0,
+    "page": "What_If_Simulation",
+    "has_traceback": false
+  }
+}

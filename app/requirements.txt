@@ -1,0 +1,9 @@
+streamlit>=1.57
+pandas>=2.3
+numpy>=2.0
+sqlalchemy>=2.0
+psycopg2-binary>=2.9
+plotly>=6.7
+folium>=0.20  # Optional: map page
+streamlit-folium>=0.27  # Optional: map page
+pytest>=9.0  # dev only

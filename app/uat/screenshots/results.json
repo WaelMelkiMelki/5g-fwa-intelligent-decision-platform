@@ -1,0 +1,286 @@
+[
+ {
+  "page": "home",
+  "width": 1920,
+  "height": 1080,
+  "file": "home_1920x1080.png",
+  "h1": "\ud83d\udce1 5G FWA Decision-Support Dashboard",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "home",
+  "width": 1440,
+  "height": 900,
+  "file": "home_1440x900.png",
+  "h1": "\ud83d\udce1 5G FWA Decision-Support Dashboard",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "home",
+  "width": 1366,
+  "height": 768,
+  "file": "home_1366x768.png",
+  "h1": "\ud83d\udce1 5G FWA Decision-Support Dashboard",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p1_executive",
+  "width": 1920,
+  "height": 1080,
+  "file": "p1_executive_1920x1080.png",
+  "h1": "1 \u00b7 Executive Overview",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p1_executive",
+  "width": 1440,
+  "height": 900,
+  "file": "p1_executive_1440x900.png",
+  "h1": "1 \u00b7 Executive Overview",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p1_executive",
+  "width": 1366,
+  "height": 768,
+  "file": "p1_executive_1366x768.png",
+  "h1": "1 \u00b7 Executive Overview",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p2_campaign",
+  "width": 1920,
+  "height": 1080,
+  "file": "p2_campaign_1920x1080.png",
+  "h1": "2 \u00b7 Campaign Operations",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p2_campaign",
+  "width": 1440,
+  "height": 900,
+  "file": "p2_campaign_1440x900.png",
+  "h1": "2 \u00b7 Campaign Operations",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p2_campaign",
+  "width": 1366,
+  "height": 768,
+  "file": "p2_campaign_1366x768.png",
+  "h1": "2 \u00b7 Campaign Operations",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p3_drilldown",
+  "width": 1920,
+  "height": 1080,
+  "file": "p3_drilldown_1920x1080.png",
+  "h1": "3 \u00b7 Subscriber Drill-Down",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p3_drilldown",
+  "width": 1440,
+  "height": 900,
+  "file": "p3_drilldown_1440x900.png",
+  "h1": "3 \u00b7 Subscriber Drill-Down",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p3_drilldown",
+  "width": 1366,
+  "height": 768,
+  "file": "p3_drilldown_1366x768.png",
+  "h1": "3 \u00b7 Subscriber Drill-Down",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p4_capacity",
+  "width": 1920,
+  "height": 1080,
+  "file": "p4_capacity_1920x1080.png",
+  "h1": "4 \u00b7 Network Capacity",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p4_capacity",
+  "width": 1440,
+  "height": 900,
+  "file": "p4_capacity_1440x900.png",
+  "h1": "4 \u00b7 Network Capacity",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p4_capacity",
+  "width": 1366,
+  "height": 768,
+  "file": "p4_capacity_1366x768.png",
+  "h1": "4 \u00b7 Network Capacity",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p5_model",
+  "width": 1920,
+  "height": 1080,
+  "file": "p5_model_1920x1080.png",
+  "h1": "5 \u00b7 Model Performance (verified precomputed metrics)",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p5_model",
+  "width": 1440,
+  "height": 900,
+  "file": "p5_model_1440x900.png",
+  "h1": "5 \u00b7 Model Performance (verified precomputed metrics)",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "p5_model",
+  "width": 1366,
+  "height": 768,
+  "file": "p5_model_1366x768.png",
+  "h1": "5 \u00b7 Model Performance (verified precomputed metrics)",
+  "contains_expected": true,
+  "overflow_px": 0,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "page": "e2e_drilldown",
+  "width": 1440,
+  "height": 900,
+  "file": "e2e_drilldown_1440x900.png",
+  "landed_url": "BASE/Campaign_Operations",
+  "needs_loads_profile": true,
+  "db_error": false,
+  "body_snippet": "Home Executive Overview Campaign Operations Subscriber Drill Down Network Capacity Model P"
+ },
+ {
+  "file": "e2e_drilldown_1440x900.png",
+  "md5": "82ba315dc1"
+ },
+ {
+  "file": "home_1366x768.png",
+  "md5": "b149da69ed"
+ },
+ {
+  "file": "home_1440x900.png",
+  "md5": "2faa7e8479"
+ },
+ {
+  "file": "home_1920x1080.png",
+  "md5": "3d76243924"
+ },
+ {
+  "file": "p1_executive_1366x768.png",
+  "md5": "2b81eee16a"
+ },
+ {
+  "file": "p1_executive_1440x900.png",
+  "md5": "c5788e81c8"
+ },
+ {
+  "file": "p1_executive_1920x1080.png",
+  "md5": "95f1cb29a8"
+ },
+ {
+  "file": "p2_campaign_1366x768.png",
+  "md5": "fd2580167a"
+ },
+ {
+  "file": "p2_campaign_1440x900.png",
+  "md5": "f1f3bb9e0e"
+ },
+ {
+  "file": "p2_campaign_1920x1080.png",
+  "md5": "27d307fd1d"
+ },
+ {
+  "file": "p3_drilldown_1366x768.png",
+  "md5": "49cf1fc452"
+ },
+ {
+  "file": "p3_drilldown_1440x900.png",
+  "md5": "d66cf551d0"
+ },
+ {
+  "file": "p3_drilldown_1920x1080.png",
+  "md5": "8c4b7365c5"
+ },
+ {
+  "file": "p4_capacity_1366x768.png",
+  "md5": "fb4ede66fd"
+ },
+ {
+  "file": "p4_capacity_1440x900.png",
+  "md5": "49d4f21fa6"
+ },
+ {
+  "file": "p4_capacity_1920x1080.png",
+  "md5": "770447d090"
+ },
+ {
+  "file": "p5_model_1366x768.png",
+  "md5": "575ecbbd90"
+ },
+ {
+  "file": "p5_model_1440x900.png",
+  "md5": "9246ff7881"
+ },
+ {
+  "file": "p5_model_1920x1080.png",
+  "md5": "09753d3aa7"
+ }
+]

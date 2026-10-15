@@ -1,0 +1,302 @@
+[
+    {
+        "column_name": "subscriber_id",
+        "data_type": "object",
+        "dimension": "Keys",
+        "business_description": "Unique subscriber identifier"
+    },
+    {
+        "column_name": "snapshot_month",
+        "data_type": "object",
+        "dimension": "Keys",
+        "business_description": "Monthly observation period"
+    },
+    {
+        "column_name": "segment_tier",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "CRM subscriber segment"
+    },
+    {
+        "column_name": "b2b_b2c_flag",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "Business vs Consumer flag"
+    },
+    {
+        "column_name": "arpu_monthly_tnd",
+        "data_type": "float64",
+        "dimension": "T2 Commercial",
+        "business_description": "Average Revenue Per User (TND)"
+    },
+    {
+        "column_name": "tenure_months",
+        "data_type": "int64",
+        "dimension": "T2 Commercial",
+        "business_description": "Months since activation"
+    },
+    {
+        "column_name": "address_id",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "Physical service address identifier"
+    },
+    {
+        "column_name": "governorate",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "Geographic governorate"
+    },
+    {
+        "column_name": "contract_type",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "Prepaid vs Postpaid"
+    },
+    {
+        "column_name": "num_active_lines",
+        "data_type": "int64",
+        "dimension": "T2 Commercial",
+        "business_description": "Total active MSISDNs on account"
+    },
+    {
+        "column_name": "has_mobile_sub_flag",
+        "data_type": "bool",
+        "dimension": "T2 Commercial",
+        "business_description": "Flag indicating active mobile subscription"
+    },
+    {
+        "column_name": "activation_date",
+        "data_type": "datetime64[ns]",
+        "dimension": "T2 Commercial",
+        "business_description": "Date of first service activation"
+    },
+    {
+        "column_name": "audit_flag",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "Data quality audit status"
+    },
+    {
+        "column_name": "churn",
+        "data_type": "int64",
+        "dimension": "T2 Commercial",
+        "business_description": "Target variable: 1 if churned, 0 otherwise"
+    },
+    {
+        "column_name": "arpu_band",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "GMM-derived ARPU categorical band"
+    },
+    {
+        "column_name": "tenure_band",
+        "data_type": "object",
+        "dimension": "T2 Commercial",
+        "business_description": "GMM-derived Tenure categorical band"
+    },
+    {
+        "column_name": "multi_line_flag",
+        "data_type": "bool",
+        "dimension": "T2 Commercial",
+        "business_description": "Derived flag for multiple active lines"
+    },
+    {
+        "column_name": "monthly_sessions",
+        "data_type": "int64",
+        "dimension": "T1 Core Usage",
+        "business_description": "Total monthly network attachment sessions"
+    },
+    {
+        "column_name": "monthly_total_gb",
+        "data_type": "float64",
+        "dimension": "T1 Core Usage",
+        "business_description": "Total monthly data volume in GB"
+    },
+    {
+        "column_name": "dl_volume_mb_imputed_monthly_median",
+        "data_type": "float64",
+        "dimension": "T1 Core Usage",
+        "business_description": "Imputed median downlink volume (MB)"
+    },
+    {
+        "column_name": "monthly_peak_hour_ratio",
+        "data_type": "float64",
+        "dimension": "T1 Core Usage",
+        "business_description": "Ratio of traffic during peak congestion hours"
+    },
+    {
+        "column_name": "dominant_device_generation",
+        "data_type": "object",
+        "dimension": "T1 Dominance",
+        "business_description": "Primary device technology (4G/5G)"
+    },
+    {
+        "column_name": "dominant_serving_cell_id",
+        "data_type": "object",
+        "dimension": "T1 Dominance",
+        "business_description": "Cell ID where mobile device historically camped"
+    },
+    {
+        "column_name": "device_5g_ready_flag",
+        "data_type": "bool",
+        "dimension": "T1 Dominance",
+        "business_description": "Boolean flag for 5G device capability"
+    },
+    {
+        "column_name": "serving_cell_id",
+        "data_type": "object",
+        "dimension": "T4 Coverage",
+        "business_description": "Predicted cell ID serving the fixed address"
+    },
+    {
+        "column_name": "predicted_rsrp_dbm",
+        "data_type": "float64",
+        "dimension": "T4 Coverage",
+        "business_description": "Predicted Reference Signal Received Power"
+    },
+    {
+        "column_name": "predicted_sinr_db",
+        "data_type": "float64",
+        "dimension": "T4 Coverage",
+        "business_description": "Predicted Signal-to-Interference-plus-Noise Ratio"
+    },
+    {
+        "column_name": "coverage_5g_flag",
+        "data_type": "bool",
+        "dimension": "T4 Coverage",
+        "business_description": "Boolean flag for 5G coverage availability"
+    },
+    {
+        "column_name": "coverage_4g_flag",
+        "data_type": "bool",
+        "dimension": "T4 Coverage",
+        "business_description": "Boolean flag for 4G coverage availability"
+    },
+    {
+        "column_name": "fiber_coverage_flag",
+        "data_type": "bool",
+        "dimension": "T4 Coverage",
+        "business_description": "Boolean flag for existing FTTH availability"
+    },
+    {
+        "column_name": "signal_quality_class",
+        "data_type": "object",
+        "dimension": "T4 Coverage",
+        "business_description": "Categorical RF quality tier"
+    },
+    {
+        "column_name": "radio_feasibility_class",
+        "data_type": "object",
+        "dimension": "T4 Coverage",
+        "business_description": "Ultimate Go/No-Go FWA feasibility class"
+    },
+    {
+        "column_name": "streaming_vol_gb",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly OTT streaming volume in GB"
+    },
+    {
+        "column_name": "streaming_session_count",
+        "data_type": "int64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly count of streaming sessions"
+    },
+    {
+        "column_name": "iptv_active_flag",
+        "data_type": "bool",
+        "dimension": "T5 Service",
+        "business_description": "Boolean flag for active IPTV subscription"
+    },
+    {
+        "column_name": "iptv_watch_hours",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly IPTV consumption in hours"
+    },
+    {
+        "column_name": "voip_minutes",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly VoIP call minutes"
+    },
+    {
+        "column_name": "cloud_cam_flag",
+        "data_type": "bool",
+        "dimension": "T5 Service",
+        "business_description": "Boolean flag for cloud camera traffic"
+    },
+    {
+        "column_name": "iot_traffic_share_pct",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Percentage of traffic from IoT devices"
+    },
+    {
+        "column_name": "social_media_vol_gb",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly social media data volume in GB"
+    },
+    {
+        "column_name": "gaming_vol_gb",
+        "data_type": "float64",
+        "dimension": "T5 Service",
+        "business_description": "Monthly online gaming data volume in GB"
+    },
+    {
+        "column_name": "streaming_heavy_flag",
+        "data_type": "bool",
+        "dimension": "T5 Service",
+        "business_description": "1D GMM-derived flag for heavy streaming"
+    },
+    {
+        "column_name": "gaming_heavy_flag",
+        "data_type": "bool",
+        "dimension": "T5 Service",
+        "business_description": "1D GMM-derived flag for heavy gaming"
+    },
+    {
+        "column_name": "high_voip_usage_flag",
+        "data_type": "bool",
+        "dimension": "T5 Service",
+        "business_description": "1D GMM-derived flag for high VoIP usage"
+    },
+    {
+        "column_name": "site_id",
+        "data_type": "object",
+        "dimension": "T3 Capacity",
+        "business_description": "Physical cell site identifier"
+    },
+    {
+        "column_name": "avg_prb_utilisation_pct",
+        "data_type": "float64",
+        "dimension": "T3 Capacity",
+        "business_description": "Average Physical Resource Block utilization"
+    },
+    {
+        "column_name": "p95_prb_utilisation_pct",
+        "data_type": "float64",
+        "dimension": "T3 Capacity",
+        "business_description": "95th percentile PRB utilization (peak load)"
+    },
+    {
+        "column_name": "max_prb_utilisation_pct",
+        "data_type": "float64",
+        "dimension": "T3 Capacity",
+        "business_description": "Maximum observed PRB utilization"
+    },
+    {
+        "column_name": "avg_dl_throughput_mbps",
+        "data_type": "float64",
+        "dimension": "T3 Capacity",
+        "business_description": "Average downlink throughput at cell level"
+    },
+    {
+        "column_name": "current_capacity_proxy_status",
+        "data_type": "object",
+        "dimension": "T3 Capacity",
+        "business_description": "Categorical cell capacity status (Available/Constrained)"
+    }
+]
