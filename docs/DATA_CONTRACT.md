@@ -108,3 +108,14 @@ Columns:
 The churn target is generated from noisy commercial factors rather than copied from a downstream eligibility or campaign decision. Eligibility, recommendations, and capacity outcomes must be computed after source generation. No downstream result may be used as an input to create the target.
 
 Synthetic distributions are plausible engineering assumptions, not measurements of a real operator. Every public result must state that limitation.
+
+## 6. Persistence contract
+
+`save_dataset()` validates the in-memory tables before writing them to a caller-selected directory. It writes one `{table_name}.parquet` file per table and a `manifest.json` file containing:
+
+- UTC generation timestamp;
+- all generator configuration values;
+- row counts for every table;
+- ordered column names for every table.
+
+The command-line entry point is `scripts/generate_synthetic_data.py`. Generated data belongs under `data/processed/`, which is ignored by Git because datasets are reproducible local artifacts rather than source code.

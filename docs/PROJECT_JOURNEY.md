@@ -110,7 +110,28 @@ The generator uses `numpy.random.default_rng` with an explicit seed. It validate
 - Deterministic runtime smoke check: **passed**.
 - Existing application tests: **92 passed, 68 skipped** in the local environment.
 
-## 6. Current limitations
+## 6. Local dataset persistence milestone
+
+### Objective
+
+Persist a generated dataset locally in a portable format without committing generated data to Git.
+
+### Implemented files
+
+- `data_generation/synthetic_fwa.py`: validated Parquet writer and manifest generation.
+- `scripts/generate_synthetic_data.py`: configurable command-line entry point.
+- `tests/test_synthetic_data.py`: Parquet round-trip and manifest test.
+- `README.md`: local generation command.
+
+### Output contract
+
+The command writes five `{table_name}.parquet` files and one `manifest.json` under `data/processed/`. The directory is ignored by Git; the seed, configuration, row counts, and columns are recorded in the manifest for reproducibility.
+
+### Validation status
+
+This milestone is complete when the focused test suite passes and the generated Parquet files reload with the same rows and columns as the in-memory tables.
+
+## 7. Current limitations
 
 - The synthetic generator is not yet connected to the legacy ABT builder.
 - The dashboard still expects PostgreSQL tables rather than generated DataFrames or Parquet files.
@@ -118,7 +139,7 @@ The generator uses `numpy.random.default_rng` with an explicit seed. It validate
 - The project has no FastAPI service or grounded agent yet.
 - The exact reason for skipped application tests should be recorded when database-dependent UAT is run with a test database.
 
-## 7. Ordered roadmap
+## 8. Ordered roadmap
 
 1. Connect generated source tables to a public ABT transformation.
 2. Add Parquet export and a data-quality report.

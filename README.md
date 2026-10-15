@@ -48,3 +48,11 @@ python -m pytest tests/test_synthetic_data.py -q
 ```
 
 The generator uses a configurable random seed and can inject duplicate and missing-value anomalies for data-quality testing.
+
+To create a local Parquet dataset and manifest:
+
+```bash
+python scripts/generate_synthetic_data.py --output-dir data/processed --subscribers 1000 --cells 40 --seed 42
+```
+
+Generated files are local artifacts and are excluded from Git.

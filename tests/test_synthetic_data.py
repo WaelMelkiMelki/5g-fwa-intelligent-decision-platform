@@ -5,7 +5,12 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from data_generation.synthetic_fwa import SyntheticFwaConfig, generate_dataset, validate_dataset
+from data_generation.synthetic_fwa import (
+    SyntheticFwaConfig,
+    generate_dataset,
+    save_dataset,
+    validate_dataset,
+)
 
 
 def test_generation_is_reproducible():
@@ -33,3 +38,16 @@ def test_quality_anomalies_are_detected():
     dataset = generate_dataset(SyntheticFwaConfig(subscribers=20, cells=3, seed=3, inject_anomalies=True))
     with pytest.raises(ValueError, match="Usage grain"):
         validate_dataset(dataset)
+
+
+def test_save_dataset_writes_parquet_tables_and_manifest(tmp_path):
+    config = SyntheticFwaConfig(subscribers=12, cells=3, seed=19)
+    dataset = generate_dataset(config)
+    manifest = save_dataset(dataset, tmp_path, config)
+
+    assert set(manifest["tables"]) == set(dataset)
+    assert manifest["config"]["seed"] == 19
+    for table_name, table in dataset.items():
+        saved = pd.read_parquet(tmp_path / f"{table_name}.parquet")
+        pd.testing.assert_frame_equal(saved, table)
+    assert (tmp_path / "manifest.json").exists()

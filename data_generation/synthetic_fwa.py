@@ -7,6 +7,9 @@ source domains used by the original pipeline and keeps identifiers synthetic.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime, timezone
+import json
+from pathlib import Path
 from typing import Dict
 
 import numpy as np
@@ -180,3 +183,35 @@ def validate_dataset(dataset: Dict[str, pd.DataFrame]) -> None:
         raise ValueError("PRB utilisation must be between 0 and 100")
     if dataset["coverage_addresses"][["latitude", "longitude"]].isna().any().any():
         raise ValueError("Coverage coordinates cannot be null")
+
+
+def save_dataset(
+    dataset: Dict[str, pd.DataFrame],
+    output_dir: str | Path,
+    config: SyntheticFwaConfig,
+) -> dict:
+    """Validate and save tables as Parquet files with a JSON run manifest."""
+    validate_dataset(dataset)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    for table_name, table in dataset.items():
+        table.to_parquet(output_path / f"{table_name}.parquet", index=False)
+
+    manifest = {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "config": {
+            "subscribers": config.subscribers,
+            "cells": config.cells,
+            "snapshot_month": config.snapshot_month,
+            "seed": config.seed,
+            "inject_anomalies": config.inject_anomalies,
+        },
+        "tables": {
+            table_name: {"rows": len(table), "columns": list(table.columns)}
+            for table_name, table in dataset.items()
+        },
+    }
+    (output_path / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
+    return manifest
