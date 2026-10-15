@@ -1,2 +1,4 @@
 -r app/requirements.txt
 duckdb>=1.0
+scikit-learn>=1.5
+kmodes>=0.12.2

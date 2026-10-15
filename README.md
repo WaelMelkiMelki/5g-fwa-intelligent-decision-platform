@@ -81,6 +81,14 @@ python scripts/score_eligibility.py --abt-path data/processed/abt_subscriber_mon
 
 This writes `fwa_eligibility.parquet` and `eligibility_manifest.json` locally.
 
+To fit mixed-type customer segments on eligible subscribers:
+
+```bash
+python scripts/fit_segmentation.py --abt-path data/processed/abt_subscriber_month.parquet --eligibility-path data/processed/fwa_eligibility.parquet --output-dir data/processed --clusters 4 --seed 42
+```
+
+This writes `subscriber_segments.parquet`, `segment_profiles.parquet`, and `segmentation_manifest.json` locally.
+
 ## Local DuckDB exploration
 
 The pipeline uses the **Python `duckdb` package** inside `.venv`. The **standalone

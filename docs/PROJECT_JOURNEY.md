@@ -202,13 +202,39 @@ Apply a deterministic, explainable FWA decision policy to the validated ABT.
 
 The results are synthetic reconstruction outputs and must not be compared as if they were the historical Huawei results.
 
-## 11. Ordered roadmap
+## 11. Customer segmentation milestone
 
-1. Add reproducible segmentation and churn training.
-2. Add model evaluation artifacts and experiment metadata.
-3. Add FastAPI decision endpoints.
-4. Adapt the dashboard to the public local data path.
-5. Add a read-only grounded agent with controlled tools.
-6. Add observability, CI, and final portfolio documentation.
+### Objective
+
+Segment eligible FWA candidates using a mixed-type clustering technique without allowing ineligible subscribers or downstream decisions to influence the clusters.
+
+### Technique
+
+DuckDB/Pandas provide the ABT and eligibility inputs. Numeric features are standardized with `StandardScaler`; categorical features remain string-valued. `KPrototypes` from `kmodes` uses Cao initialization, five restarts, and seed 42. The model receives explicit categorical column indices, allowing distance calculations across mixed feature types. Profiles summarize numeric means and categorical modes after fitting.
+
+### Implemented files
+
+- `data_pipeline/segmentation.py`: feature contract, K-Prototypes fitting, profiling, validation, and persistence.
+- `scripts/fit_segmentation.py`: command-line training entry point.
+- `tests/test_segmentation.py`: eligibility filtering, reproducibility, persistence, and configuration tests.
+- `requirements-dev.txt`: `scikit-learn` and `kmodes` dependencies.
+
+### Validation evidence
+
+- Focused segmentation tests: **4 passed**.
+- Full-scale eligible population: **8,335 rows**.
+- Four cluster sizes: **661, 2,506, 3,370, 1,798**.
+- Model cost: **69,736.71**.
+- Assignments and profiles are local generated artifacts under `data/processed/`.
+
+The four-cluster setting is a documented provisional configuration, not proof that four is globally optimal. A later experiment should compare candidate values of `k` using cost, stability, and business interpretability.
+
+## 12. Ordered roadmap
+
+1. Add model evaluation artifacts and experiment metadata.
+2. Add FastAPI decision endpoints.
+3. Adapt the dashboard to the public local data path.
+4. Add a read-only grounded agent with controlled tools.
+5. Add observability, CI, and final portfolio documentation.
 
 Each step must update this document and the relevant contract/decision document before the next step starts.

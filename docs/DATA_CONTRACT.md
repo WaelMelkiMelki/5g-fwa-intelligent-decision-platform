@@ -148,3 +148,9 @@ The ABT is written to `abt_subscriber_month.parquet` with `abt_manifest.json`. T
 `data_pipeline/eligibility.py` applies the explainable FWA suitability policy with DuckDB SQL. Hard-stop precedence is fibre cannibalization, radio infeasibility, then constrained capacity. Eligible rows start at 100 points and receive a 20-point no-5G penalty and a 15-point low-ARPU penalty. Bands are Premium (80+), Standard (60-79), Marginal (40-59), and Excluded (below 40 or any hard stop).
 
 The output grain is one row per `subscriber_id` and `snapshot_month`, written as `fwa_eligibility.parquet` with `eligibility_manifest.json`. Full-scale reconstructed results currently contain 12,412 rows: 4,077 Excluded, 7,715 Premium, 620 Standard, and 0 Marginal. These are synthetic experimental results, not historical operator results.
+
+## 10. Segmentation output contract
+
+`data_pipeline/segmentation.py` filters the ABT to `fwa_suitability_score > 0`, standardizes nine numeric features, keeps six categorical features as strings, and passes their categorical column indices to K-Prototypes. The model uses `n_clusters=4`, `init='Cao'`, `n_init=5`, and `seed=42` by default. No target, campaign action, or downstream model prediction is used as a clustering feature.
+
+The output contains one `cluster_id` and neutral `business_label` per eligible subscriber-month. Profiles contain cluster sizes, numeric means, and categorical modes. The full-scale run produced 8,335 eligible assignments across four clusters: 661, 2,506, 3,370, and 1,798 rows. These cluster labels are provisional until their business interpretation is reviewed.
