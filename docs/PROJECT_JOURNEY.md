@@ -133,7 +133,26 @@ The command writes five `{table_name}.parquet` files and one `manifest.json` und
 
 This milestone is complete when the focused test suite passes and the generated Parquet files reload with the same rows and columns as the in-memory tables.
 
-## 7. Current limitations
+## 7. Analytical Base Table milestone
+
+### Objective
+
+Create one validated subscriber-month analytical table from the five generated source domains.
+
+### Implemented files
+
+- `data_pipeline/abt.py`: source loading, explicit joins, feature derivation, validation, and persistence.
+- `data_pipeline/__init__.py`: transformation exports.
+- `scripts/build_abt.py`: command-line ABT builder.
+- `tests/test_abt.py`: grain, join, feature, persistence, and failure-path tests.
+
+### Validation evidence
+
+- Focused ABT tests: **4 passed**.
+- Join cardinality is enforced by Pandas merge validation.
+- The output contract is one row per synthetic subscriber and snapshot.
+
+## 8. Current limitations
 
 - The synthetic generator is not yet connected to the legacy ABT builder.
 - The dashboard still expects PostgreSQL tables rather than generated DataFrames or Parquet files.
@@ -141,16 +160,15 @@ This milestone is complete when the focused test suite passes and the generated 
 - The project has no FastAPI service or grounded agent yet.
 - The exact reason for skipped application tests should be recorded when database-dependent UAT is run with a test database.
 
-## 8. Ordered roadmap
+## 9. Ordered roadmap
 
-1. Connect generated source tables to a public ABT transformation.
-2. Add Parquet export and a data-quality report.
-3. Rebuild eligibility and capacity logic against reconstructed data.
-4. Add reproducible segmentation and churn training.
-5. Add model evaluation artifacts and experiment metadata.
-6. Add FastAPI decision endpoints.
-7. Adapt the dashboard to the public local data path.
-8. Add a read-only grounded agent with controlled tools.
-9. Add observability, CI, and final portfolio documentation.
+1. Add a data-quality report for source and ABT tables.
+2. Rebuild eligibility and capacity logic against reconstructed data.
+3. Add reproducible segmentation and churn training.
+4. Add model evaluation artifacts and experiment metadata.
+5. Add FastAPI decision endpoints.
+6. Adapt the dashboard to the public local data path.
+7. Add a read-only grounded agent with controlled tools.
+8. Add observability, CI, and final portfolio documentation.
 
 Each step must update this document and the relevant contract/decision document before the next step starts.

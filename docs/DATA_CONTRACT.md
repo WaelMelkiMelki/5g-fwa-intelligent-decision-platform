@@ -120,3 +120,17 @@ Synthetic distributions are plausible engineering assumptions, not measurements 
 - ordered column names for every table.
 
 The command-line entry point is `scripts/generate_synthetic_data.py`. Generated data belongs under `data/processed/`, which is ignored by Git because datasets are reproducible local artifacts rather than source code.
+
+## 7. Analytical Base Table contract
+
+`data_pipeline/abt.py` joins the five source tables into `abt_subscriber_month`, with grain one row per `subscriber_id` and `snapshot_month`.
+
+The transformation uses:
+
+- one-to-one validation for subscriber usage and service joins;
+- one-to-one validation for address coverage joins;
+- many-to-one validation for subscriber-to-cell KPI joins;
+- deterministic ARPU and tenure bands;
+- multi-line, service-intensity, and capacity-status flags.
+
+The ABT is written to `abt_subscriber_month.parquet` with `abt_manifest.json`. The ABT is a public reconstructed analytical table and must not be confused with the unavailable historical Huawei ABT.
