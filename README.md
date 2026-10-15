@@ -57,6 +57,14 @@ python scripts/generate_synthetic_data.py --output-dir data/processed --subscrib
 
 Generated files are local artifacts and are excluded from Git.
 
+To build the subscriber-month ABT from those files:
+
+```bash
+python scripts/build_abt.py --source-dir data/processed --output-dir data/processed
+```
+
+This writes `abt_subscriber_month.parquet` and `abt_manifest.json` locally.
+
 To build the local subscriber-month Analytical Base Table from those files:
 
 ```bash

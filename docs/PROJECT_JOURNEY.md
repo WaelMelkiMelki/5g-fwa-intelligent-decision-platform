@@ -154,7 +154,7 @@ Create one validated subscriber-month analytical table from the five generated s
 
 ## 8. Current limitations
 
-- The synthetic generator is not yet connected to the legacy ABT builder.
+- The public synthetic source tables are now connected to the public ABT builder; the legacy PostgreSQL pipeline remains separate.
 - The dashboard still expects PostgreSQL tables rather than generated DataFrames or Parquet files.
 - Public model results have not yet been retrained on reconstructed data.
 - The project has no FastAPI service or grounded agent yet.
