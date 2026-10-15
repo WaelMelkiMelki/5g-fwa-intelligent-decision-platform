@@ -65,10 +65,10 @@ python scripts/build_abt.py --source-dir data/processed --output-dir data/proces
 
 This writes `abt_subscriber_month.parquet` and `abt_manifest.json` locally.
 
-To build the local subscriber-month Analytical Base Table from those files:
+To run the source and ABT quality checks:
 
 ```bash
-python scripts/build_abt.py --source-dir data/processed --output-dir data/processed
+python scripts/run_quality_checks.py --source-dir data/processed --abt-path data/processed/abt_subscriber_month.parquet
 ```
 
-This writes `abt_subscriber_month.parquet` and `abt_manifest.json` locally.
+The report is written to `data/processed/quality_report.json` and is ignored as a generated local artifact.

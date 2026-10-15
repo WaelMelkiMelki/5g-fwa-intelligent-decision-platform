@@ -134,3 +134,9 @@ The transformation uses:
 - multi-line, service-intensity, and capacity-status flags.
 
 The ABT is written to `abt_subscriber_month.parquet` with `abt_manifest.json`. The ABT is a public reconstructed analytical table and must not be confused with the unavailable historical Huawei ABT.
+
+## 8. Quality-report contract
+
+`data_pipeline/quality.py` checks the five source tables and the ABT for required tables, non-empty outputs, grain uniqueness, non-null keys, snapshot consistency, subscriber/address/cell relationships, row-count preservation, non-negative measures, and PRB ranges. The coverage table is address-grain and intentionally has no `snapshot_month`; snapshot checks apply only to tables that declare that column.
+
+`scripts/run_quality_checks.py` writes `quality_report.json` and exits with status 1 when any check fails. The verified full-scale dataset currently produces **31 PASS checks and 0 FAIL checks**.

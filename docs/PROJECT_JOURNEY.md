@@ -152,7 +152,26 @@ Create one validated subscriber-month analytical table from the five generated s
 - Join cardinality is enforced by Pandas merge validation.
 - The output contract is one row per synthetic subscriber and snapshot.
 
-## 8. Current limitations
+## 8. Data-quality reporting milestone
+
+### Objective
+
+Create a fail-closed quality gate before downstream modelling.
+
+### Implemented files
+
+- `data_pipeline/quality.py`: source and ABT checks plus JSON report generation.
+- `scripts/run_quality_checks.py`: command-line quality gate.
+- `tests/test_quality.py`: clean-path and broken-cell-reference tests.
+- `README.md` and `docs/DATA_CONTRACT.md`: execution and contract documentation.
+
+### Validation evidence
+
+- Focused quality tests: **2 passed**.
+- Full-scale quality report: **31 passed, 0 failed**.
+- Report artifact: `data/processed/quality_report.json`.
+
+## 9. Current limitations
 
 - The public synthetic source tables are now connected to the public ABT builder; the legacy PostgreSQL pipeline remains separate.
 - The dashboard still expects PostgreSQL tables rather than generated DataFrames or Parquet files.
@@ -160,15 +179,14 @@ Create one validated subscriber-month analytical table from the five generated s
 - The project has no FastAPI service or grounded agent yet.
 - The exact reason for skipped application tests should be recorded when database-dependent UAT is run with a test database.
 
-## 9. Ordered roadmap
+## 10. Ordered roadmap
 
-1. Add a data-quality report for source and ABT tables.
-2. Rebuild eligibility and capacity logic against reconstructed data.
-3. Add reproducible segmentation and churn training.
-4. Add model evaluation artifacts and experiment metadata.
-5. Add FastAPI decision endpoints.
-6. Adapt the dashboard to the public local data path.
-7. Add a read-only grounded agent with controlled tools.
-8. Add observability, CI, and final portfolio documentation.
+1. Rebuild eligibility and capacity logic against reconstructed data.
+2. Add reproducible segmentation and churn training.
+3. Add model evaluation artifacts and experiment metadata.
+4. Add FastAPI decision endpoints.
+5. Adapt the dashboard to the public local data path.
+6. Add a read-only grounded agent with controlled tools.
+7. Add observability, CI, and final portfolio documentation.
 
 Each step must update this document and the relevant contract/decision document before the next step starts.
