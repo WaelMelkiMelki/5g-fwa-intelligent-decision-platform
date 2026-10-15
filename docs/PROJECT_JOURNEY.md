@@ -179,14 +179,36 @@ Create a fail-closed quality gate before downstream modelling.
 - The project has no FastAPI service or grounded agent yet.
 - The exact reason for skipped application tests should be recorded when database-dependent UAT is run with a test database.
 
-## 10. Ordered roadmap
+## 10. Eligibility and suitability milestone
 
-1. Rebuild eligibility and capacity logic against reconstructed data.
-2. Add reproducible segmentation and churn training.
-3. Add model evaluation artifacts and experiment metadata.
-4. Add FastAPI decision endpoints.
-5. Adapt the dashboard to the public local data path.
-6. Add a read-only grounded agent with controlled tools.
-7. Add observability, CI, and final portfolio documentation.
+### Objective
+
+Apply a deterministic, explainable FWA decision policy to the validated ABT.
+
+### Implemented files
+
+- `data_pipeline/eligibility.py`: DuckDB SQL policy, validation, and persistence.
+- `scripts/score_eligibility.py`: command-line scoring entry point.
+- `tests/test_eligibility.py`: policy and failure-path tests.
+- `README.md` and `docs/DATA_CONTRACT.md`: execution and output documentation.
+
+### Validation evidence
+
+- Focused eligibility tests: **4 passed**.
+- Full-scale output: **12,412 rows**.
+- Bands: **4,077 Excluded, 7,715 Premium, 620 Standard, 0 Marginal**.
+- Exclusion reasons: **3,126 RF failures and 951 fibre-cannibalization exclusions**.
+- Output artifact: `data/processed/fwa_eligibility.parquet`.
+
+The results are synthetic reconstruction outputs and must not be compared as if they were the historical Huawei results.
+
+## 11. Ordered roadmap
+
+1. Add reproducible segmentation and churn training.
+2. Add model evaluation artifacts and experiment metadata.
+3. Add FastAPI decision endpoints.
+4. Adapt the dashboard to the public local data path.
+5. Add a read-only grounded agent with controlled tools.
+6. Add observability, CI, and final portfolio documentation.
 
 Each step must update this document and the relevant contract/decision document before the next step starts.

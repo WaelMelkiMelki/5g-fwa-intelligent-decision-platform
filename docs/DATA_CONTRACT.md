@@ -142,3 +142,9 @@ The ABT is written to `abt_subscriber_month.parquet` with `abt_manifest.json`. T
 `data_pipeline/quality.py` checks the five source tables and the ABT for required tables, non-empty outputs, grain uniqueness, non-null keys, snapshot consistency, subscriber/address/cell relationships, row-count preservation, non-negative measures, and PRB ranges. The coverage table is address-grain and intentionally has no `snapshot_month`; snapshot checks apply only to tables that declare that column.
 
 `scripts/run_quality_checks.py` writes `quality_report.json` and exits with status 1 when any check fails. The verified full-scale dataset currently produces **31 PASS checks and 0 FAIL checks**.
+
+## 9. Eligibility output contract
+
+`data_pipeline/eligibility.py` applies the explainable FWA suitability policy with DuckDB SQL. Hard-stop precedence is fibre cannibalization, radio infeasibility, then constrained capacity. Eligible rows start at 100 points and receive a 20-point no-5G penalty and a 15-point low-ARPU penalty. Bands are Premium (80+), Standard (60-79), Marginal (40-59), and Excluded (below 40 or any hard stop).
+
+The output grain is one row per `subscriber_id` and `snapshot_month`, written as `fwa_eligibility.parquet` with `eligibility_manifest.json`. Full-scale reconstructed results currently contain 12,412 rows: 4,077 Excluded, 7,715 Premium, 620 Standard, and 0 Marginal. These are synthetic experimental results, not historical operator results.
