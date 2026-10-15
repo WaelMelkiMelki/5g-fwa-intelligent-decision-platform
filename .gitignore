@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+app/.streamlit/secrets.toml
+
+# Local databases and reconstructed data
+*.db
+*.sqlite
+*.sqlite3
+data/raw/
+data/interim/
+data/processed/
+
+# Generated outputs and local reports
+_build/
+build/
+dist/
+*.log
+main.pdf
+report_v4/*.aux
+report_v4/*.bbl
+report_v4/*.blg
+report_v4/*.fdb_latexmk
+report_v4/*.fls
+report_v4/*.log
+report_v4/*.out
+report_v4/*.toc
+report_v4/*.lof
+report_v4/*.lot
+report_v4/*.synctex.gz
+
+# Potentially confidential or temporary project material
+correction_backup/
+FWA_project_COMBINED_DUMP.txt
+prompt for backup.txt
+pollution_results.txt
