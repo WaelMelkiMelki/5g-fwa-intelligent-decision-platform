@@ -125,6 +125,8 @@ The command-line entry point is `scripts/generate_synthetic_data.py`. Generated 
 
 `data_pipeline/abt.py` joins the five source tables into `abt_subscriber_month`, with grain one row per `subscriber_id` and `snapshot_month`.
 
+The public ABT currently contains 45 columns. Duplicate dimension columns are excluded through explicit SQL projection; for example, the address-level `governorate` is not copied into a second `governorate_coverage` column.
+
 The transformation uses:
 
 - one-to-one validation for subscriber usage and service joins;

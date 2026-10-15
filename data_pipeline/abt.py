@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Mapping
 
 import pandas as pd
+import duckdb
 
 
 SOURCE_TABLES = (
@@ -29,70 +30,74 @@ def load_source_dataset(source_dir: str | Path) -> dict[str, pd.DataFrame]:
     return dataset
 
 
-def _add_distribution_features(abt: pd.DataFrame) -> pd.DataFrame:
-    """Add deterministic bands and service-intensity flags to the joined base."""
-    abt = abt.copy()
-    abt["arpu_band"] = pd.cut(
-        abt["arpu_monthly_tnd"],
-        bins=[-float("inf"), 25, 55, 90, float("inf")],
-        labels=["LV", "Mid", "High", "Premium"],
-    ).astype(str)
-    abt["tenure_band"] = pd.cut(
-        abt["tenure_months"],
-        bins=[-float("inf"), 12, 36, float("inf")],
-        labels=["Short Tenure", "Medium Tenure", "Long Tenure"],
-    ).astype(str)
-    abt["multi_line_flag"] = abt["num_active_lines"] > 1
-    abt["streaming_heavy_flag"] = abt["streaming_vol_gb"] >= abt["streaming_vol_gb"].quantile(0.75)
-    abt["gaming_heavy_flag"] = abt["gaming_vol_gb"] >= abt["gaming_vol_gb"].quantile(0.75)
-    abt["high_voip_usage_flag"] = abt["voip_minutes"] >= abt["voip_minutes"].quantile(0.75)
-    abt["current_capacity_proxy_status"] = (
-        abt["p95_prb_utilisation_pct"] <= 80
-    ).map({True: "Available", False: "Constrained"})
-    return abt
-
-
 def build_abt(dataset: Mapping[str, pd.DataFrame]) -> pd.DataFrame:
-    """Join validated source tables into one subscriber-month analytical base."""
+    """Join source tables with DuckDB SQL into one analytical base."""
     missing = set(SOURCE_TABLES).difference(dataset)
     if missing:
         raise ValueError(f"Missing source tables: {sorted(missing)}")
 
-    crm = dataset["crm_subscribers"].copy()
-    usage = dataset["usage_monthly"].copy()
-    coverage = dataset["coverage_addresses"].copy()
-    services = dataset["service_consumption"].copy()
-    cells = dataset["cell_kpis"].copy()
-
-    abt = crm.merge(
-        usage,
-        on=["subscriber_id", "snapshot_month"],
-        how="inner",
-        validate="one_to_one",
-        suffixes=("", "_usage"),
-    )
-    abt = abt.merge(
-        services,
-        on=["subscriber_id", "snapshot_month"],
-        how="inner",
-        validate="one_to_one",
-    )
-    abt = abt.merge(
-        coverage,
-        on="address_id",
-        how="inner",
-        validate="one_to_one",
-        suffixes=("", "_coverage"),
-    )
-    abt = abt.merge(
-        cells,
-        left_on=["dominant_serving_cell_id", "snapshot_month"],
-        right_on=["cell_id", "snapshot_month"],
-        how="inner",
-        validate="many_to_one",
-        suffixes=("", "_cell"),
-    ).drop(columns=["cell_id"])
-    return _add_distribution_features(abt)
+    connection = duckdb.connect()
+    try:
+        for table_name in SOURCE_TABLES:
+            connection.register(table_name, dataset[table_name])
+        query = """
+        WITH joined AS (
+            SELECT
+                c.subscriber_id, c.snapshot_month, c.segment_tier,
+                c.b2b_b2c_flag, c.arpu_monthly_tnd, c.tenure_months,
+                c.address_id, c.governorate, c.contract_type,
+                c.num_active_lines, c.churn,
+                u.monthly_sessions, u.monthly_total_gb,
+                u.monthly_peak_hour_ratio, u.dominant_device_generation,
+                u.dominant_serving_cell_id, u.device_5g_ready_flag,
+                cov.serving_cell_id, cov.latitude, cov.longitude,
+                cov.predicted_rsrp_dbm, cov.predicted_sinr_db,
+                cov.coverage_5g_flag, cov.coverage_4g_flag,
+                cov.fiber_coverage_flag, cov.signal_quality_class,
+                cov.radio_feasibility_class,
+                s.streaming_vol_gb, s.streaming_session_count,
+                s.iptv_active_flag, s.iptv_watch_hours, s.voip_minutes,
+                s.gaming_vol_gb,
+                k.site_id, k.avg_prb_utilisation_pct,
+                k.p95_prb_utilisation_pct, k.max_prb_utilisation_pct,
+                k.avg_dl_throughput_mbps
+            FROM crm_subscribers AS c
+            INNER JOIN usage_monthly AS u
+                ON c.subscriber_id = u.subscriber_id
+               AND c.snapshot_month = u.snapshot_month
+            INNER JOIN service_consumption AS s
+                ON c.subscriber_id = s.subscriber_id
+               AND c.snapshot_month = s.snapshot_month
+            INNER JOIN coverage_addresses AS cov
+                ON c.address_id = cov.address_id
+            INNER JOIN cell_kpis AS k
+                ON u.dominant_serving_cell_id = k.cell_id
+               AND u.snapshot_month = k.snapshot_month
+        )
+        SELECT
+            joined.*,
+            CASE
+                WHEN arpu_monthly_tnd <= 25 THEN 'LV'
+                WHEN arpu_monthly_tnd <= 55 THEN 'Mid'
+                WHEN arpu_monthly_tnd <= 90 THEN 'High'
+                ELSE 'Premium'
+            END AS arpu_band,
+            CASE
+                WHEN tenure_months <= 12 THEN 'Short Tenure'
+                WHEN tenure_months <= 36 THEN 'Medium Tenure'
+                ELSE 'Long Tenure'
+            END AS tenure_band,
+            num_active_lines > 1 AS multi_line_flag,
+            streaming_vol_gb >= quantile_cont(streaming_vol_gb, 0.75) OVER () AS streaming_heavy_flag,
+            gaming_vol_gb >= quantile_cont(gaming_vol_gb, 0.75) OVER () AS gaming_heavy_flag,
+            voip_minutes >= quantile_cont(voip_minutes, 0.75) OVER () AS high_voip_usage_flag,
+            CASE WHEN p95_prb_utilisation_pct <= 80 THEN 'Available' ELSE 'Constrained' END
+                AS current_capacity_proxy_status
+        FROM joined
+        """
+        return connection.execute(query).df()
+    finally:
+        connection.close()
 
 
 def validate_abt(abt: pd.DataFrame) -> None:

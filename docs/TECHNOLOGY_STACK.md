@@ -13,7 +13,7 @@ The local-first design keeps the project fully usable without paid cloud service
 | Language | Python 3.11 | Current | Data processing, rules, ML, services |
 | Query language | SQL | Current/next | Relational transformations and analysis |
 | File format | Parquet | Current | Versionable local data exchange |
-| Local analytics | DuckDB | Current/next | SQL analytics directly over Parquet |
+| Local analytics | DuckDB | Current | SQL analytics directly over Parquet and registered DataFrames |
 | DataFrames | Pandas | Current | Existing transformations and model-compatible tables |
 | Numeric computing | NumPy | Current | Vectorized calculations and simulation logic |
 | Database | PostgreSQL | Next platform stage | Production-style relational persistence |
@@ -37,6 +37,7 @@ The current public pipeline uses:
 - Pandas and NumPy;
 - Parquet and PyArrow;
 - Pytest;
+- DuckDB SQL for the ABT transformation;
 - JSON manifests;
 - GitHub for version control and documentation.
 

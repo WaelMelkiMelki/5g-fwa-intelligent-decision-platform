@@ -16,6 +16,8 @@ def test_build_abt_preserves_subscriber_month_grain():
     assert len(abt) == 30
     assert abt[["subscriber_id", "snapshot_month"]].duplicated().sum() == 0
     assert {"arpu_band", "tenure_band", "multi_line_flag", "streaming_heavy_flag"}.issubset(abt.columns)
+    assert "governorate_coverage" not in abt.columns
+    assert len(abt.columns) == 45
 
 
 def test_abt_joins_cell_kpis_and_derives_capacity_status():
