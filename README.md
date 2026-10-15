@@ -31,3 +31,16 @@ The public version will use seeded synthetic data, validated data contracts, loc
 The dashboard currently expects a PostgreSQL database configured through `FWA_DB_*` environment variables or `app/.streamlit/secrets.toml`. Do not commit either configuration or any real credentials.
 
 The reconstructed public pipeline and setup instructions will be added after the data contract is approved.
+
+## Synthetic data generator
+
+The first reproducible data slice is available in `data_generation/`. It creates linked CRM, monthly usage, address coverage, service-consumption, and cell-KPI tables without requiring PostgreSQL.
+
+After installing the development dependencies, run the focused tests with:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m pytest tests/test_synthetic_data.py -q
+```
+
+The generator uses a configurable random seed and can inject duplicate and missing-value anomalies for data-quality testing.
