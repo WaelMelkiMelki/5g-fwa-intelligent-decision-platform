@@ -7,6 +7,7 @@ This directory is the canonical documentation entry point for the public portfol
 - [Project journey](PROJECT_JOURNEY.md): objectives, phases, completed work, evidence, and open risks.
 - [Data contract](DATA_CONTRACT.md): synthetic source tables, grains, keys, relationships, and validation rules.
 - [Decision log](DECISION_LOG.md): important technical and publication decisions with their rationale.
+- [Technology stack](TECHNOLOGY_STACK.md): adopted technologies, stages, roles, and rationale.
 
 ## Documentation rule
 

@@ -47,3 +47,11 @@
 **Reason:** Matching historical values without the original data would create unsupported claims and potential leakage.
 
 **Consequence:** Reports and dashboards must label the data source, seed/configuration, run date, and result status.
+
+## D-007: Adopt a phased production-relevant technology stack
+
+**Decision:** Adopt Python, SQL, Parquet, Pandas, NumPy, Pytest, DuckDB, PostgreSQL, dbt Core, FastAPI, MLflow, Docker Compose, Prometheus/Grafana, Ollama, and a controlled agent framework in stages.
+
+**Reason:** These technologies map to real data, ML, backend, MLOps, and agentic-AI responsibilities while preserving a zero-budget local execution path.
+
+**Consequence:** DuckDB is the next technology to add. PostgreSQL and dbt follow after local transformations stabilize; Spark and Airflow remain conditional rather than mandatory.

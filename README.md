@@ -16,7 +16,7 @@ The original datasets are unavailable. Reconstructed experiments must not claim 
 
 ## Documentation
 
-Start with the [documentation index](docs/README.md). The [project journey](docs/PROJECT_JOURNEY.md) records completed work and validation evidence, while the [data contract](docs/DATA_CONTRACT.md) and [decision log](docs/DECISION_LOG.md) define the public reconstruction rules.
+Start with the [documentation index](docs/README.md). The [project journey](docs/PROJECT_JOURNEY.md) records completed work and validation evidence, the [data contract](docs/DATA_CONTRACT.md) defines the public reconstruction rules, the [decision log](docs/DECISION_LOG.md) records architectural choices, and the [technology stack](docs/TECHNOLOGY_STACK.md) explains the adopted tools.
 
 ## Current contents
 
