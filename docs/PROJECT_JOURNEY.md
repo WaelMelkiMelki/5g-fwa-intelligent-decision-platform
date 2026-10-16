@@ -229,7 +229,34 @@ DuckDB/Pandas provide the ABT and eligibility inputs. Numeric features are stand
 
 The four-cluster setting is a documented provisional configuration, not proof that four is globally optimal. A later experiment should compare candidate values of `k` using cost, stability, and business interpretability.
 
-## 12. Ordered roadmap
+## 12. Churn modelling milestone
+
+### Objective
+
+Train a leakage-controlled churn-risk baseline using the synthetic ABT and preserve a clear distinction between ranking usefulness and calibrated real-world risk.
+
+### Technique
+
+The pipeline uses scikit-learn `HistGradientBoostingClassifier`, a CPU-native tabular model. Six categorical features are one-hot encoded; ten numeric features are passed through. A stratified 80/20 holdout is used because only one snapshot exists. Risk bands are percentile rankings on all predicted probabilities. Eligibility, segmentation, campaign, identity, and snapshot fields are excluded from the feature matrix.
+
+### Implemented files
+
+- `data_pipeline/churn.py`: feature contract, training, metrics, risk bands, validation, and persistence.
+- `scripts/train_churn.py`: command-line training entry point.
+- `tests/test_churn.py`: metric, reproducibility, target, and grain tests.
+- `requirements-dev.txt`: CPU-native scikit-learn dependency path; no XGBoost/NCCL requirement.
+
+### Validation evidence
+
+- Focused churn tests: **4 passed**.
+- Training rows: **9,929**; holdout rows: **2,483**.
+- ROC-AUC: **0.5570**.
+- Average precision: **0.0665**; holdout prevalence baseline: **0.0503**.
+- Prediction artifact: `data/processed/churn_predictions.parquet`.
+
+The result is a synthetic single-snapshot baseline. It does not establish temporal generalization, calibration, causality, or production performance. A later version needs multiple snapshots and real campaign/churn outcomes.
+
+## 13. Ordered roadmap
 
 1. Add model evaluation artifacts and experiment metadata.
 2. Add FastAPI decision endpoints.

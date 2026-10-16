@@ -13,14 +13,14 @@ The local-first design keeps the project fully usable without paid cloud service
 | Language | Python 3.11 | Current | Data processing, rules, ML, services |
 | Query language | SQL | Current/next | Relational transformations and analysis |
 | File format | Parquet | Current | Versionable local data exchange |
-| Local analytics | DuckDB | Current | SQL analytics directly over Parquet and registered DataFrames |
+| Local analytics | DuckDB Python + standalone CLI/UI | Current | ABT SQL transformations and graphical exploration of local Parquet |
 | DataFrames | Pandas | Current | Existing transformations and model-compatible tables |
 | Numeric computing | NumPy | Current | Vectorized calculations and simulation logic |
 | Database | PostgreSQL | Next platform stage | Production-style relational persistence |
 | Transformations | dbt Core | Next platform stage | Tested SQL models, documentation, and lineage |
 | Orchestration | Airflow | Later | Scheduled, retryable pipeline execution |
 | Validation | Pytest + explicit quality contracts | Current | Automated tests and data-quality gates |
-| ML | scikit-learn and XGBoost | Later | Segmentation and churn modelling |
+| ML | scikit-learn HistGradientBoosting; XGBoost optional | Current | CPU-native churn baseline; later model comparison |
 | Experiment tracking | MLflow | Later | Runs, metrics, artifacts, and model versions |
 | API | FastAPI | Later | Decision and inference endpoints |
 | Dashboard | Streamlit | Existing | Interactive decision-support interface |
@@ -38,10 +38,40 @@ The current public pipeline uses:
 - Parquet and PyArrow;
 - Pytest;
 - DuckDB SQL for the ABT transformation;
+- DuckDB standalone CLI and local browser UI for Parquet exploration;
 - JSON manifests;
 - GitHub for version control and documentation.
 
-DuckDB is the next local analytics addition. PostgreSQL and dbt will be introduced after the public transformations are stable, so the same data contract can be tested in both local-file and database execution modes.
+DuckDB is implemented for transformation and local exploration. PostgreSQL and dbt will be introduced after the public transformations are stable, so the same data contract can be tested in both local-file and database execution modes.
+
+### DuckDB Python versus CLI/UI
+
+The `.venv` Python package provides `import duckdb` to the existing ABT builder.
+It does not install the standalone `duckdb` executable. The separate CLI provides
+the SQL shell and `-ui` browser interface. Both were validated at version 1.5.6;
+installing the CLI does not change the Python environment or public pipeline API.
+
+Follow the [user-local setup in the README](../README.md#local-duckdb-exploration).
+The pinned CLI lives at `~/.duckdb/cli/1.5.6/duckdb`, outside Git, with no system
+package changes. Run `./scripts/open_duckdb_ui.sh` from the repository root, or use
+its absolute path. The launcher checks the CLI and ABT, then exposes generated
+Parquet as views in an in-memory catalog. `--no-browser` starts the same UI server
+for manual access at `http://localhost:4213`. Keep the CLI running while browsing.
+
+Use `SELECT count(*) FROM abt_subscriber_month` or query a file directly with
+`SELECT count(*) FROM read_parquet('data/processed/abt_subscriber_month.parquet')`.
+The [example SQL](example_queries.sql) also checks grain uniqueness, PRB utilisation,
+and radio feasibility using the generated schema. Execute it from the repository
+root with `duckdb -init /dev/null -bail :memory: < docs/example_queries.sql` after
+adding the CLI directory to `PATH`.
+
+Queries and data stay local by default; no account or paid service is needed.
+The [UI extension](https://duckdb.org/docs/stable/extensions/ui) is downloaded and
+cached under `~/.duckdb`, and UI assets are fetched from `https://ui.duckdb.org`.
+Thus local-first does not mean a fully offline graphical interface; the standalone
+SQL shell works offline on these Parquet files after installation. The launcher
+does not attach MotherDuck or alter the ABT. Generated data remains ignored under
+`data/processed/`; UI state and binaries are user-local artifacts, not source code.
 
 ## 4. Why Spark is not current
 
@@ -60,7 +90,7 @@ Spark becomes justified only if a later workload requires distributed processing
 ## 6. Adoption order
 
 1. Python, Parquet, Pandas, NumPy, Pytest: implemented.
-2. DuckDB: local SQL analytics over generated data.
+2. DuckDB: ABT SQL transformation and local CLI/UI exploration implemented.
 3. PostgreSQL and dbt Core: relational serving and documented transformations.
 4. Eligibility, capacity, segmentation, and churn modules.
 5. MLflow and FastAPI: reproducible model lifecycle and APIs.

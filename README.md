@@ -89,6 +89,14 @@ python scripts/fit_segmentation.py --abt-path data/processed/abt_subscriber_mont
 
 This writes `subscriber_segments.parquet`, `segment_profiles.parquet`, and `segmentation_manifest.json` locally.
 
+To train the CPU-native churn baseline:
+
+```bash
+python scripts/train_churn.py --abt-path data/processed/abt_subscriber_month.parquet --output-dir data/processed --seed 42
+```
+
+This writes `churn_predictions.parquet` and `churn_metrics.json` locally.
+
 ## Local DuckDB exploration
 
 The pipeline uses the **Python `duckdb` package** inside `.venv`. The **standalone

@@ -154,3 +154,9 @@ The output grain is one row per `subscriber_id` and `snapshot_month`, written as
 `data_pipeline/segmentation.py` filters the ABT to `fwa_suitability_score > 0`, standardizes nine numeric features, keeps six categorical features as strings, and passes their categorical column indices to K-Prototypes. The model uses `n_clusters=4`, `init='Cao'`, `n_init=5`, and `seed=42` by default. No target, campaign action, or downstream model prediction is used as a clustering feature.
 
 The output contains one `cluster_id` and neutral `business_label` per eligible subscriber-month. Profiles contain cluster sizes, numeric means, and categorical modes. The full-scale run produced 8,335 eligible assignments across four clusters: 661, 2,506, 3,370, and 1,798 rows. These cluster labels are provisional until their business interpretation is reviewed.
+
+## 11. Churn-model output contract
+
+`data_pipeline/churn.py` trains a CPU-native `HistGradientBoostingClassifier` after one-hot encoding six categorical features and passing ten numeric features through unchanged. The target is the synthetic `churn` column. Eligibility score/band/reason, cluster assignments, campaign actions, subscriber identifiers, and snapshot date are excluded to prevent downstream leakage and identity memorization.
+
+Because the public data has one snapshot, evaluation uses a stratified 80/20 holdout rather than a temporal split. Predictions include a probability and relative percentile risk band; the bands are ranking aids, not calibrated real-world incidence estimates. The full-scale baseline produced ROC-AUC 0.5570 and average precision 0.0665 against a 0.0503 test prevalence baseline. These values describe the current synthetic generator and should not be used as operator performance claims.
